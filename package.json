@@ -1,6 +1,6 @@
 {
   "name": "synchro-bus-mcp-server",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "A Model Context Protocol server for accessing Synchro Bus (Instant-System) API",
   "type": "module",
   "main": "dist/index.js",
@@ -14,6 +14,9 @@
     "lint": "eslint src/**/*.ts",
     "format": "prettier --write src/**/*.ts"
   },
+  "files": [
+    "dist"
+  ],
   "keywords": [
     "mcp",
     "synchro-bus",
