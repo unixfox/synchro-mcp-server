@@ -4,6 +4,9 @@
   "description": "A Model Context Protocol server for accessing Synchro Bus (Instant-System) API",
   "type": "module",
   "main": "dist/index.js",
+  "bin": {
+    "synchro-bus-mcp-server": "./dist/index.js"
+  },
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
