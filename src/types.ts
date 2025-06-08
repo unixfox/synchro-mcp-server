@@ -127,13 +127,22 @@ export interface Config {
   server: { name: string; version: string };
 }
 
-export interface VehicleJourneyDirection {
+export interface VehicleJourneysDirections {
+  vehicleJourneys: VehicleJourneys;
+}
+
+export interface VehicleJourneys {
+  return?: VehicleJourney[];
+  outward?: VehicleJourney[];
+}
+
+interface VehicleJourney {
   id: string;
-  sName: string;
-  lName: string;
-  direction: string;
-  line: Line;
-  stopAreas: StopArea[];
+  realTimeStatus: string;
+  bear: number;
+  speed: number;
+  lat: number;
+  lon: number;
 }
 
 export interface Proximity {

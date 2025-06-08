@@ -6,7 +6,7 @@ import {
   StopArea,
   Schedule,
   Disruption,
-  VehicleJourneyDirection,
+  VehicleJourneysDirections,
   Proximity
 } from './types.js';
 import config from './config.js';
@@ -18,6 +18,15 @@ const instantSystemApi = axios.create({
     'Content-Type': 'application/json',
   },
 });
+
+function countBuses(vehicleJourneysDirections: VehicleJourneysDirections) {
+  const vehicleJourneys = vehicleJourneysDirections.vehicleJourneys;
+  if (vehicleJourneys.outward && vehicleJourneys.return) {
+    return vehicleJourneys.outward.length + vehicleJourneys.return.length;
+  } else {
+    return 0;
+  }
+}
 
 /**
  * Get network information
@@ -208,12 +217,12 @@ export async function vehicleJourneysDirectionsGet(
     const response = await instantSystemApi.get(`/v3/networks/${config.instantSystem.networkId}/lines/${lineId}/vehicleJourneys/directions`, {
       params: { key: config.instantSystem.networkId }
     });
-    const directions: VehicleJourneyDirection[] = response.data;
+    const directions: VehicleJourneysDirections = response.data;
     
     return {
       content: [{
         type: "text",
-        text: `Found ${directions.length} directions for line ${lineId}`
+        text: `Found ${countBuses(directions)} directions for line ${lineId}`
       }],
       metadata: { directions }
     };
